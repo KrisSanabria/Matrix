@@ -1,8 +1,4 @@
-Yanina Piuca
-	
-15:24 (hace 0 minutos)
-	
-para celestezuritaet12d1
+
 namespace EjemploRelevamiento
 {
 public class Mascota
