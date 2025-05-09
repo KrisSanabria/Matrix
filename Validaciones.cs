@@ -10,8 +10,8 @@ namespace EjemploRelevamiento
         }
         public static void ValidarTelefono (int telefono)
         {
-            if( telefono )
-            throw ArgumentException ()
+            if( telefono = "")
+            throw ArgumentException ("El mensaje no puede estar vacío")
         }
         public static void ValidarCorreo (string correo)
         {
