@@ -7,16 +7,16 @@ namespace EjemploRelevamiento
     private  int telefono;
     private string correo;
     private string MetodoDePago;
-    private list<Mascotas>mascota;
+    private List<Mascotas>mascotas;
    
-    public Cliente cliente = new Cliente (string nombreCompleto,string direccion, int telefono,string correo,string MetodoDePago)
+    public Cliente (string nombreCompleto,string direccion, int telefono,string correo,string MetodoDePago)
 {
     this.nombreCompleto = nombreCompleto;
     this.direccion= direccion;
     this.telefono= telefono;
     this.correo = correo;
     this.MetodoDePago = MetodoPago;
-    this.mascota=new list<Mascotas>();
+    this.Mascotas =new List<Mascotas>();
 } 
     public void MostrarDatos()
     {
@@ -26,9 +26,9 @@ namespace EjemploRelevamiento
         Console.WriteLine("Email: " + email);
         Console.WriteLine("Método de pago: " + metodoPago);
     }
-    public void AgregarMascota(Mascota mascota)
+    public void AgregarMascota(Mascota mascotas)
     {
-        mascotas.Add(mascota);
+        mascotas.Add(mascotas);
     }
 
       public void MostrarMascotas()
@@ -38,7 +38,8 @@ namespace EjemploRelevamiento
         {
         mascota.MostrarInfo();
         }
-    }
+     }
+  }
 }
-    }
+
 
