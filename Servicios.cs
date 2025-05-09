@@ -1,3 +1,4 @@
+
 namespace EjemploRelevamiento
 {
 public class Servicio
@@ -13,9 +14,9 @@ public Servicio(string nombre, string descripcion, int duracionAproximada, decim
         this.nombre = nombre;
         this.descripcion = descripcion;
       
-        Validador.ValidarDuracion(duracionAproximada);
+        Validaciones.ValidarDuracion(duracionAproximada);
         this.duracionAproximada = duracionAproximada;
-        Validador.ValidarCosto(costo);
+        Validaciones.ValidarCosto(costo);
         this.costo = costo;
         this.RequiereReservaAnticipada= RequiereReservaAnticipada;
     }
