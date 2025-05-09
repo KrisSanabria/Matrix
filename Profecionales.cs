@@ -1,42 +1,45 @@
-using EjemploRelevamiento;
-   public class Profesional
+
+namespace EjemploRelevamiento
 {
-    private string nombreCompleto;
-    private string especialidad;
-    private string numeroMatricula;
-    private List <DateTime> disponibilidad;
-
-    public Profesional(string nombre, string especialidad, string numeroMatricula, List<DateTime> disponibilidad)
+    public enum Especialidad
     {
-        this.nombreCompleto = nombre;
-        this.especialidad = especialidad;
-        this.numeroMatricula = numeroMatricula;
-        this.disponibilidad = disponibilidad ?? new List<DateTime>();
+        Veterinario,
+        Paseador,
+        Peluquero
     }
 
-  
-    public string Nombre => nombreCompleto;
-    public string Especialidad => especialidad;
-    public string NumeroMatricula => numeroMatricula;
-    public List<DateTime> Disponibilidad => disponibilidad;
-
-    
-    public bool EstaDisponible(DateTime fechaHora)
+    public class Profesionales
     {
-        return disponibilidad.Contains(fechaHora);
-    }
+        private string nombreCompleto;
+        private Especialidad especialidad;
+        private string numeroMatricula; 
+        private List <DateTime> disponibilidad;
 
-    
-    public void AgregarDisponibilidad(DateTime fechaHora)
-    {
-        if (!disponibilidad.Contains(fechaHora))
+        public Profesionales (string nombreCompleto, Especialidad especialidad, string numeroMatricula, List <DateTime> disponibilidad)
         {
-            disponibilidad.Add(fechaHora);
+            Validaciones.ValidarNombre(nombreCompleto);
+            this.nombreCompleto = nombreCompleto;
+            this.especialidad = especialidad;
+            this.numeroMatricula = numeroMatricula;
+            this.disponibilidadHoraria = disponibilidad ?? new List<DateTime>();
+        }
+
+        public string GetNombreCompleto() => nombreCompleto;
+        public Especialidad GetEspecialidad() => especialidad;
+        public string GetMatricula() => numeroMatricula;
+        public List<DateTime> GetDisponibilidad() => disponibilidad;
+
+        public bool EstaDisponible(DateTime fechaHora)
+        {
+            return disponibilidadHoraria.Contains(fechaHora);
+        }
+
+        public void AsignarTurno(DateTime fechaHora)
+        {
+            if (!EstaDisponible(fechaHora))
+                throw new Exception("El profesional no está disponible en ese horario.");
+            disponibilidadHoraria.Remove(fechaHora);
         }
     }
-
-    public void EliminarDisponibilidad(DateTime fechaHora)
-    {
-        disponibilidad.Remove(fechaHora);
-    }
 }
+	
