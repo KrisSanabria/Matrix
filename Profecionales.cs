@@ -9,7 +9,7 @@ namespace EjemploRelevamiento
     }
 
     public class Profesionales
-    {
+     {
         private string nombreCompleto;
         private Especialidad especialidad;
         private string numeroMatricula; 
@@ -21,7 +21,7 @@ namespace EjemploRelevamiento
             this.nombreCompleto = nombreCompleto;
             this.especialidad = especialidad;
             this.numeroMatricula = numeroMatricula;
-            this.disponibilidadHoraria = disponibilidad ?? new List<DateTime>();
+            this.disponibilidad = disponibilidad ?? new List<DateTime>();
         }
 
         public string GetNombreCompleto() => nombreCompleto;
@@ -31,14 +31,15 @@ namespace EjemploRelevamiento
 
         public bool EstaDisponible(DateTime fechaHora)
         {
-            return disponibilidadHoraria.Contains(fechaHora);
-        }
+            return disponibilidad.Contains(fechaHora);
+        
 
         public void AsignarTurno(DateTime fechaHora)
-        {
+            {
             if (!EstaDisponible(fechaHora))
                 throw new Exception("El profesional no está disponible en ese horario.");
-            disponibilidadHoraria.Remove(fechaHora);
+            disponibilid.Remove(fechaHora);
+            }
         }
     }
 }
