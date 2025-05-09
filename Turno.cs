@@ -1,4 +1,5 @@
 
+
 namespace EjemploRelevamiento
 {
     public enum  estadoTurno
@@ -18,24 +19,24 @@ namespace EjemploRelevamiento
   {
     private DateTime fechaHora;
     private Servicio servicio;
-    private Mascota mascotas;
+    private Mascota mascota;
     private Profesionales profesionales;
     private estadoTurno estado ;
     private Modalidad modalidad;
 
-    public Turno (DateTime fechaHora, Servicio servicio, Mascotas mascotas, Profesionales profesionales, estadoTurno estado, Modalidad modalidad)
+    public Turno (DateTime fechaHora, Servicio servicio, Mascota mascota, Profesionales profesionales, estadoTurno estado, Modalidad modalidad)
    {
-      Validar.ValidacionFechaHora(fechaHora,servicio);
+      Validaciones.ValidarFechaHora(fechaHora,servicio);
       this.fechaHora = fechaHora;
       this.servicio  = servicio;
-      this.mascotas = mascotas;
-      Validar.ValidarDisponibilidad(profesionales, servicio);
+      this.mascota = mascota;
+      Validaciones.ValidarDisponibilidad(profesionales, servicio);
       this.profesionales = profesionales;
 
    }
     public void MostrarInfo()
     {
-      Console.WriteLine($"Turno para {mascotas.nombre} - {Servicio.Nombre}");
+      Console.WriteLine($"Turno para {mascota.nombre} - {Servicio.Nombre}");
       Console.WriteLine($"Fecha y Hora {fechaHora}");
       Console.WriteLine($"Profesional: {profesionales.nombreCompleto}");
       Console.WriteLine($"Estado: {estadoTurno}");
