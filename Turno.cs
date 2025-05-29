@@ -24,7 +24,8 @@ namespace EjemploRelevamiento
     private estadoTurno estado ;
     private Modalidad modalidad;
 
-    public Turno (DateTime fechaHora, Servicio servicio, Mascota mascota, Profesionales profesionales, estadoTurno estado, Modalidad modalidad)
+    public Turno (DateTime fechaHora, Servicio servicio, Mascota mascota, Profesionales profesionales, estadoTurno estado, 
+		  Modalidad modalidad)
    {
       Validaciones.ValidarFechaHora(fechaHora,servicio);
       this.fechaHora = fechaHora;
