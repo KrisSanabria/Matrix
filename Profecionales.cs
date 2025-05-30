@@ -1,46 +1,44 @@
 
 namespace EjemploRelevamiento
 {
-    public enum Especialidad
+    public enum Especialidades
     {
         Veterinario,
         Paseador,
         Peluquero
     }
 
-    public class Profesionales
+    public class Profesional
      {
-        private string nombreCompleto;
-        private Especialidad especialidad;
-        private string numeroMatricula; 
-        private List <DateTime> disponibilidad;
+        public string NombreCompleto { get; private set;}
+        public Especialidades Especialidad { get; private set;}
+        public string NumeroMatricula { get; private set;}
+        public List <DateTime> Disponibilidad { get; private set;}
 
-        public Profesionales (string nombreCompleto, Especialidad especialidad, string numeroMatricula, List <DateTime> disponibilidad)
+        public Profesional(string nombreCompleto, Especialidades especialidad, string numeroMatricula)
         {
-            Validaciones.ValidarNombre(nombreCompleto);
-            this.nombreCompleto = nombreCompleto;
-            this.especialidad = especialidad;
-            this.numeroMatricula = numeroMatricula;
-            this.disponibilidad = disponibilidad ?? new List<DateTime>();
+            NombreCompleto = nombreCompleto;
+            Especialidad = especialidad;
+            NumeroMatricula = numeroMatricula;
+            Disponibilidad = new List<DateTime>();
         }
-
-        public string GetNombreCompleto() => nombreCompleto;
-        public Especialidad GetEspecialidad() => especialidad;
-        public string GetMatricula() => numeroMatricula;
-        public List<DateTime> GetDisponibilidad() => disponibilidad;
-
+       
+        public void AgregarHorario(DateTime fechaHora)
+        {
+            Disponibilidad.Add(fechaHora);
+        }
         public bool EstaDisponible(DateTime fechaHora)
         {
-            return disponibilidad.Contains(fechaHora);
-        
-
-        public void AsignarTurno(DateTime fechaHora)
-            {
-            if (!EstaDisponible(fechaHora))
-                throw new Exception("El profesional no está disponible en ese horario.");
-            disponibilid.Remove(fechaHora);
-            }
+            return !
+            Disponibilidad.Contains(fechaHora);
+        }
+        public void MostrarInfo()
+        {
+            Console.WriteLine("----- Profesional -----");
+            Console.WriteLine($"Nombre completo: {NombreCompleto}");
+            Console.WriteLine($"Especialidad: {Especialidad}");
+            Console.WriteLine($"Número de matrícula: {(string.IsNullOrWhiteSpace(NumeroMatricula) ? "No aplica" : NumeroMatricula)}");
+            Console.WriteLine("------------------------");
         }
     }
 }
-	
