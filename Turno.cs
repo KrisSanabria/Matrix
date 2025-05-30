@@ -2,7 +2,7 @@
 
 namespace EjemploRelevamiento
 {
-    public enum  estadoTurno
+    public enum  EstadoTurno
     {
         Pendiente,
         Confirmado,
@@ -15,35 +15,40 @@ namespace EjemploRelevamiento
         Domicilio
     }
 
-  public class Turno
-  {
-    private DateTime fechaHora;
-    private Servicio servicio;
-    private Mascota mascota;
-    private Profesionales profesionales;
-    private estadoTurno estado ;
-    private Modalidad modalidad;
-
-    public Turno (DateTime fechaHora, Servicio servicio, Mascota mascota, Profesionales profesionales, estadoTurno estado, 
-		  Modalidad modalidad)
-   {
-      Validaciones.ValidarFechaHora(fechaHora,servicio);
-      this.fechaHora = fechaHora;
-      this.servicio  = servicio;
-      this.mascota = mascota;
-      Validaciones.ValidarDisponibilidad(profesionales, servicio);
-      this.profesionales = profesionales;
-
-   }
-    public void MostrarInfo()
+    public class Turno
     {
-      Console.WriteLine($"Turno para {mascota.nombre} - {Servicio.Nombre}");
-      Console.WriteLine($"Fecha y Hora {fechaHora}");
-      Console.WriteLine($"Profesional: {profesionales.nombreCompleto}");
-      Console.WriteLine($"Estado: {estadoTurno}");
-      Console.WriteLine($"Modalidad {modalidad}");
+      public DateTime FechaHora { get; private set; }
+      public Servicio Servicio { get; private set; }
+      public Mascota Mascota { get; private set; }
+      public Profesional Profesional { get; private set; }
+      public EstadoTurno Estado { get; private set; }
+      public Modalidad Modalidad { get; private set;}
 
-    }
+    public Turno(DateTime fechaHora, Servicio servicio, Mascota mascota, Profesional profesional, EstadoTurno estado,
+    Modalidad modalidad)
+    {
+      Validaciones.ValidarFechaHora(fechaHora, servicio);
+      FechaHora = fechaHora;
+      Servicio = servicio;
+      Mascota = mascota;
+      Validaciones.ValidarDisponibilidad(profesional, fechaHora);
+      Profesional = profesional;
+      profesional.AgregarHorario(fechaHora);
+      Estado = estado;
+      Modalidad = modalidad;
+      }
+      public void MostrarInfo()
+      {
+        Console.WriteLine($"Fecha y hora: {FechaHora}");
+        Console.WriteLine($"Modalidad: {Modalidad}");
+        Console.WriteLine($"Estado: {Estado}");
+        Console.WriteLine($"Servicio: {Servicio.Nombre}");
+        Console.WriteLine($"Mascota: {Mascota.Nombre}");
+        if (Profesional != null)
+          Console.WriteLine($"Profesional: {Profesional.NombreCompleto}");
+        else
+          Console.WriteLine("Profesional: (Profesional no asignado)");
+}
   }
 }
 	
